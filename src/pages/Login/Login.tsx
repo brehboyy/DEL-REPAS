@@ -10,11 +10,8 @@ const Login: React.FC = () => {
                     <div className="container-login100">
                         <div className="wrap-login100">
                             <form className="login100-form validate-form">
-                                <span className="login100-form-title p-b-26">
-                                    Login
-                                </span>
                                 <span className="login100-form-title p-b-48">
-                                    <i className="zmdi zmdi-font"></i>
+                                    <img src="assets/images/logo-del100.png"></img>
                                 </span>
 
                                 <div className="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
@@ -41,10 +38,10 @@ const Login: React.FC = () => {
 
                                 <div className="text-center p-t-115">
                                     <span className="txt1">
-                                        Don’t have an account?
+                                        Vous n'avez pas de compte ?
                                     </span>
                                     <a className="txt2" href="/home">
-                                        Sign Up
+                                        Demander un compte
                                     </a>
                                 </div>
                             </form>
