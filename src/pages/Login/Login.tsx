@@ -11,7 +11,7 @@ const Login: React.FC = () => {
                         <div className="wrap-login100">
                             <form className="login100-form validate-form">
                                 <span className="login100-form-title p-b-48">
-                                    <img src="assets/images/logo-del100.png"></img>
+                                    <img src="assets/images/logo-del100.png" alt="logo"></img>
                                 </span>
 
                                 <div className="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">

@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonAvatar, IonBadge } from '@ionic/react';
+import { IonContent, IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonAvatar, IonBadge, IonFab, IonIcon, IonFabButton } from '@ionic/react';
 import React, { useState } from 'react';
 
 export const DateAuj = ({ dateauj }: { dateauj: string }) => <IonTitle>{dateauj}</IonTitle>;
@@ -13,8 +13,22 @@ interface Repas {
     type: string,
 }
 
+const listCommande: Repas[] = [];
+
 const Commande: React.FC = (props) => {
     const [currentList, setCurrentList] = useState('entree');
+
+    let repas: Repas[] = [
+        { id: 1, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'vegetarien', type: 'entree' },
+        { id: 2, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'sans porc', type: 'plat' },
+        { id: 3, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'poisson', type: 'dessert' },
+    ];
+
+    function addRepas(rep: Repas) {
+        if (listCommande.filter(repas => repas.id === rep.id).length === 0)
+            listCommande.push(rep);
+        console.log(listCommande);
+    }
 
     function formatDate(date: Date) {
         var monthNames = [
@@ -31,24 +45,13 @@ const Commande: React.FC = (props) => {
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
 
-    const setList = (event:any) => {
-        if(String(event.detail.value) != currentList){
-            setCurrentList(String(event.detail.value));
-        }
-        
-    }
 
-    let repas: Repas[] = [
-        { id: 1, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'vegetarien', type: 'entree' },
-        { id: 2, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'sans porc', type: 'plat' },
-        { id: 3, titre: 'Americain poulet', img: './sandwish', description: 'Sandwish au poulet', qte: 20, categorie: 'poisson', type: 'dessert' },
-    ];
 
     function AfficheRepas(props: any) {
-        const listItems = repas.filter(rep => rep.type == props.type).map((rep) =>
-            <IonItem>
+        const listItems = repas.filter(rep => rep.type === props.type).map((rep) =>
+            <IonItem onClick={() => addRepas(rep)}>
                 <IonAvatar slot="start">
-                    <img src={rep.img} />
+                    <img src={rep.img} alt="repImg" />
                 </IonAvatar>
                 <IonLabel>
                     <h2>{rep.titre}</h2>
@@ -87,7 +90,14 @@ const Commande: React.FC = (props) => {
                         <IonLabel>Dessert</IonLabel>
                     </IonSegmentButton>
                 </IonSegment>
-                <AfficheRepas type={currentList}/>
+                <AfficheRepas type={currentList} />
+
+                <IonFab vertical="center" horizontal="end" slot="fixed">
+                    <IonFabButton>{listCommande.length}
+                    </IonFabButton>
+                </IonFab>
+
+                <IonButton color="primary" expand="full" className="commandeButton">Commander</IonButton>
 
             </IonContent>
         </IonPage>

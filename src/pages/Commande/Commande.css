@@ -1,0 +1,9 @@
+.panier{
+    right:10vw;
+    bottom: 30vh;
+}
+
+.commandeButton{
+    position: absolute;
+    bottom: 0px;
+}
